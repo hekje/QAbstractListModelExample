@@ -1,19 +1,20 @@
 #include <QObject>
 #include <QRandomGenerator>
 #include <QDebug>
+#include "QObjectListModel.h"
 
 // Global constants
 constexpr int MAX_X = 800;
 constexpr int MAX_Y = 800;
 
-class MyObject : public QObject {
+class MyObject : public ISystemID {
     Q_OBJECT
     Q_PROPERTY(int x READ getX CONSTANT)
     Q_PROPERTY(int y READ getY CONSTANT)
 
 public:
     explicit MyObject(uint32_t id, QObject* parent = nullptr)
-        : QObject(parent)
+        : ISystemID(parent)
         , m_id(id)
         , m_x(QRandomGenerator::global()->bounded(MAX_X + 1))
         , m_y(QRandomGenerator::global()->bounded(MAX_Y + 1)) {

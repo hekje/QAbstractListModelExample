@@ -21,7 +21,7 @@ public:
 
     QObjectListModel* objModel() const { return m_objModel; }
 
-    void addObject(uint32_t id, QObject* obj) {
+    void addObject(uint32_t id, ISystemID* obj) {
         if (!obj) {
             qDebug() << "addObject - Invalid object pointer!";
             return;
@@ -32,7 +32,7 @@ public:
             return;
         }
 
-        m_objModel->addObject(id, QPointer<QObject>(obj));
+        m_objModel->addObject(QPointer< ISystemID >(obj));
     }
 
     void removeObject(uint32_t id) {
